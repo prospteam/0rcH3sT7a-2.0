@@ -44,4 +44,4 @@ Notes:
 » Add remineder
 » performance/achievements
 
-This should be seen in github.
+This should really be seen in github.
