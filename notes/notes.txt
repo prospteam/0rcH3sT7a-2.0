@@ -1,0 +1,46 @@
+User types
+- Administrator
+- Supervisor
+- Asst. Supervisor
+- Member
+- Special User
+
+Main pages
+- Home
+- Clients
+    - accounts for dev
+    - accounts for e commerce
+    - sp accounts- todays layouts
+    - mobile versions
+    - special project
+    - for download
+    - flagged accounts
+- Tickets
+    - open tickets
+    - closed tickets
+    - archived tickets
+    - pending client feedback tickets
+- Users
+    - list of users
+        - user profile
+- QA Tracker
+    - summary
+    - Error type- summary
+    - tasks
+- Tasks
+    - task list    
+        - task detail
+            - sp details
+            - account details
+            - task list
+            - events
+            - images
+            - tickets
+            - print view
+            - activate video production
+Notes:
+» When clicking username, it should redirect to user profile
+» Add Goals
+» Add remineder
+» performance/achievements
+

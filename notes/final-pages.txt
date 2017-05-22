@@ -1,0 +1,79 @@
+Home
+	Add client
+	Unassigned tasks
+	Pending tasks
+	Client list
+	Task list
+	
+Clients
+	Add client
+	Special Conditions
+	Accounts for Dev
+	Accounts for E-commerce
+	SP Accounts
+	Today's Layouts
+	No Layouts
+	ReLayouts
+	Queue
+	Mobile Versions
+	Priority Accounts
+	Special Project
+	PSM Demo Accounts
+	PSM Demo for Today
+	For Download
+	For Follow Up
+	Flagged Accounts
+	Resellers
+	SOLD-No Chosen Layout
+	
+Tickets
+	Open Tickets
+	Closed Tickets
+	Archived Tickets
+	Pending Client Feedback Tickets
+
+Add Reseller
+
+Users
+
+Time tracker
+	View Report
+	View night shift report
+	Tracker Nightshift
+	Time Tracker Deviations
+	Tracker SV
+	
+Overtime
+	
+Tasks
+	Pending Tasks
+	Unassigned Tasks
+	Archived Tasks
+	
+Internal Check
+	Archived I/C
+
+QA Findings
+
+QA Tracker
+	Summary
+	Error Type (Summary)
+	Error Type (Members)
+	All Teams
+	
+Kudos
+	Add Kudos
+	
+Metrics
+
+Production Team Stats
+
+Intro Archived
+
+PDQA
+
+Chat
+	
+
+	
+
