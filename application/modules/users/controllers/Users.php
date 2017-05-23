@@ -9,7 +9,9 @@ class Users extends MY_Controller{
 	}
 	
 	public function index(){
-		$this->display('users/users_index_v');
+		$users = $this->users_model->fetch_users();
+		$data['users'] = $users;
+		$this->display('users/users_index_v', $data);
 	}
 
 	public function add_user(){
@@ -34,13 +36,25 @@ class Users extends MY_Controller{
 				$data['messages'][$key] = form_error($key);
 			}
 		}else{			
-			//$data['msg'] = 'Success';
 			$login = $this->users_model->add_user($formdata);
-			$data['newuser']  = $login;
-			$data['msg']	  = 'Success';
+			
+			if($login == 0 || $login == '0'){
+				$data['messages'][0] = 'Email Already Exists.';
+			}else{
+				$data['newuser']  = $login;
+				$data['msg']	  = 'Success';
+			}			
 		}
 
 		die(json_encode($data));
+	}
+
+	public function update_user_status($id, $currstat){
+		$curstat = ($currstat == 1 ? 0 : 1);
+		$updated = $this->users_model->update_user_status($id, $curstat);
+		
+		//$newstatus = ($updated == 1 ? 'btn-primary' : 'btn-danger');
+		die(json_encode($updated));
 	}
 }
 

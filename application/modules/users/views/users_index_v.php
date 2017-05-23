@@ -32,22 +32,28 @@
                 <th>Cell</th>
                 <th>Status</th>
                 <th>Created</th>
-
               </tr>
-              <?php 
-                for($x = 1; $x <= 20; $x++){
-                  $tr  = '<tr>';
-                  $tr .= '<td>0147</td>';
-                  $tr .= '<td>Kent Carlo Milkyades</td>';
-                  $tr .= '<td>kcmilkyades@prowaver.net</td>';
-                  $tr .= '<td>Administrator</td>';
-                  $tr .= '<td>09770136298</td>';
-                  $tr .= '<td>Active</td>';
-                  $tr .= '<td>Sep 21, 2017</td>';                  
-                  $tr .= '</tr> ';
 
-                  echo $tr;
+              <?php 
+              $tr = '';
+              if($users){                
+                foreach($users as $user){
+                  $tr .= '<tr>';
+                  $tr .= '<td>'.$user['user_id'].'</td>';
+                  $tr .= '<td>'.$user['user_fname'].' '.$user['user_lname'].'</td>';
+                  $tr .= '<td>'.$user['user_email'].'</td>';
+                  $tr .= '<td>'.$user['user_type'].'</td>';
+                  $tr .= '<td>'.$user['user_contact'].'</td>';
+                  $tr .= '<td>'.$user['user_status'].'</td>';
+                  $tr .= '<td>'.$user['user_date_created'].'</td>';                  
+                  $tr .= '</tr> ';
                 }
+              }else{
+                $tr .= '<tr>';
+                $tr .= '<td colspan="7" class="text-center">No data available..</td>';
+                $tr .= '</tr>';
+              }
+              echo $tr;
               ?>          
             </table>
           </div>
@@ -208,39 +214,60 @@ var siteurl = '<?= site_url() ?>';
 
 $(document).ready(function(){
   
+  //show add-user modal
   $("#add-user-btn").click(function(e){
-
     $('#add-user-modal').modal('show');
   });
 
+  //submit form inside add-user modal for processing
   $('#add-user-form').submit(function(e){
     e.preventDefault();
+
+    $('.m-loader').show();
 
     $.post(siteurl+'Users/add_user',
     $(this).serialize(),
     function(data){
-      console.log(data);
-      var response = JSON.parse(data);      
-      var userhtml;
+      $('.m-loader').hide();
 
-      userhtml += '<tr>';
-      userhtml += '<td>'+response.newuser[0].user_id+'</td>';
-      userhtml += '<td>'+response.newuser[0].user_fname+' '+response.newuser[0].user_lname+'</td>';
-      userhtml += '<td>'+response.newuser[0].user_email+'</td>';
-      userhtml += '<td>'+response.newuser[0].user_type+'</td>';
-      userhtml += '<td>'+response.newuser[0].user_contact+'</td>';
-      userhtml += '<td>'+response.newuser[0].user_status+'</td>';
-      userhtml += '<td>'+response.newuser[0].user_date_created+'</td>';
-      userhtml += '</tr>';      
+      var response = JSON.parse(data);      
+      var userhtml ='';
 
       if(response.msg == 'Success'){
+        userhtml += '<tr>';
+        userhtml += '<td>'+response.newuser[0].user_id+'</td>';
+        userhtml += '<td>'+response.newuser[0].user_fname+' '+response.newuser[0].user_lname+'</td>';
+        userhtml += '<td>'+response.newuser[0].user_email+'</td>';
+        userhtml += '<td>'+response.newuser[0].user_type+'</td>';
+        userhtml += '<td>'+response.newuser[0].user_contact+'</td>';
+        userhtml += '<td>'+response.newuser[0].user_status+'</td>';
+        userhtml += '<td>'+response.newuser[0].user_date_created+'</td>';
+        userhtml += '</tr>';      
+
         $('#add-user-form').find('.status-message').html('');
         $('#users-table tr:first').after(userhtml);
-        $.alert({
-          title: 'Alert!',
-          content: response.msg,
-        });        
-
+        
+        $.confirm({
+          title: 'Successfully added user!',
+          content : 'Add another?',
+          type: 'blue',
+          buttons:{
+            Addanother:{
+              text: 'Add Another',
+              btnClass: 'btn-blue',
+              action: function(){
+               $('#add-user-form')[0].reset(); 
+               $('.hidden-default').hide( "fast" ).find('#user-teamid').attr('disabled', true);
+              }
+            },
+            Nope:{
+              action: function(){
+                $('#add-user-form')[0].reset(); 
+                $('#add-user-modal').modal('hide');
+              }
+            }
+          }
+        });     
       }else{        
         var errorlist = '';
 
@@ -251,9 +278,9 @@ $(document).ready(function(){
         $('#add-user-form').find('.status-message').html('<div class="status-message-error">'+errorlist+'</div>');
       }        
     });
-
   });
 
+  //add-user-form (team field)
   $('body').on('change', '#user-type', function(e){
     e.preventDefault();
 
@@ -262,6 +289,46 @@ $(document).ready(function(){
     }else{
       $('.hidden-default').hide( "fast" ).find('#user-teamid').attr('disabled', true);
     }
+  });
+
+  //Update user status
+  $(document).on('click', '.updatestatus', function(e){
+    e.preventDefault();
+
+    var id      = $(this).attr('uid');
+    var curstat = $(this).attr('on');
+    var color   = (curstat == 1 ? 'red' : 'blue');
+
+    $.confirm({
+      title: 'Please Confirm',
+      content : 'Are you sure you want to '+(curstat == 1 ? 'deactivate' : 'activate')+' user?',
+      type: color,
+      buttons:{
+        Yes:{
+          btnClass: 'btn-'+color,
+          action: function(){
+            $.post(siteurl+'Users/update_user_status/'+id+'/'+curstat,
+            {id:id,curstat:curstat},
+            function(data){
+              
+              if(data == 1 || data == '1'){
+                var newstat = (curstat == 1 ? 0 : 1);
+                $.each($('.updatestatus'), function(){
+                  if($(this).attr('uid') == id){
+                    if(newstat == 1){
+                      $(this).removeClass('btn-danger').addClass('btn-primary').attr('on', 1).html('<i class="fa fa-check"></i>');              
+                    }else{
+                      $(this).removeClass('btn-primary').addClass('btn-danger').attr('on', 0).html('<i class="fa fa-times"></i>');              
+                    }                    
+                  }
+                });        
+              }  
+            });
+          }
+        },
+        Nope:{ }
+      }
+    }); 
   });
 
 });

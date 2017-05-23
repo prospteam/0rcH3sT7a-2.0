@@ -8,3 +8,17 @@ if ( ! function_exists('get_user_type'))
         return $typeArr[$type];
     }
 }
+
+if ( ! function_exists('get_user_status')){
+	function get_user_status($statusid, $userid){
+		
+		if($statusid == 1){
+			$status = '<button type="button" uid="'.$userid.'" on="'.$statusid.'" class="btn btn-block btn-primary btn-sm updatestatus"><i class="fa fa-check"></i></button>';
+		}else{
+			$status = '<button type="button" uid="'.$userid.'" on="'.$statusid.'" class="btn btn-block btn-danger btn-sm updatestatus"><i class="fa fa-times"></i></button>';
+		}		
+
+		return $status;
+	}
+}
+

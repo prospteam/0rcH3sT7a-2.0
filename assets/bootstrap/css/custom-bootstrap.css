@@ -32,3 +32,11 @@ ul.treeview-menu li a span{position:absolute; right:0;}
 .user-list .box-header button{max-width: 128px;float: right;}
 #add-user-modal .modal-body{color:grey!important;background:#fff!important;}
 /* end users */
+
+/* loader */
+.m-loader{display:none;}
+.magic-loader-backdrop{background: #000;opacity: 0.9;position: fixed;width: 100%;height: 100%;top: 0;z-index: 9999;}
+.magic-loader{background: #fff;z-index: 99999;position: absolute;top: 120px;padding: 0 20px;border-radius: 3px;left: 50%;margin-left: -80px;}
+.magic-loader hr{padding: 3px 0;margin: 8px 0 0 0;}
+.magic-loader span{display: block;text-align: center;padding: 0 0 8px 0;}
+/* end loader */
