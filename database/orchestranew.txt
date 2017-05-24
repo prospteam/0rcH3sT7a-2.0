@@ -1,0 +1,186 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 24, 2017 at 05:52 AM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.5.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `orchestranew`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orc_tabs`
+--
+
+CREATE TABLE `orc_tabs` (
+  `tab_id` int(11) NOT NULL,
+  `tab_name` varchar(52) NOT NULL,
+  `tab_link` varchar(52) NOT NULL,
+  `tab_parent` int(11) NOT NULL,
+  `tab_permission` text NOT NULL,
+  `tab_icon` varchar(52) NOT NULL,
+  `tab_status` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orc_tabs`
+--
+
+INSERT INTO `orc_tabs` (`tab_id`, `tab_name`, `tab_link`, `tab_parent`, `tab_permission`, `tab_icon`, `tab_status`) VALUES
+(1, 'Home', 'dashboard', 0, '1,2,3,4', 'fa fa-dashboard', '1'),
+(2, 'Clients', 'clients', 0, '1,2,3,4', 'fa fa-briefcase', '1'),
+(3, 'Tickets', 'tickets', 0, '1,2,3,4', 'fa fa-ticket', '1'),
+(4, 'Add Reseller', 'reseller', 0, '1,2,3,4', 'fa fa-briefcase', '1'),
+(5, 'Users', 'users', 0, '1,2,3,4', 'fa fa-address-book', '1'),
+(6, 'Time tracker', 'timetracker', 0, '1,2,3,4', 'fa fa-clock-o', '1'),
+(7, 'Overtime', 'overtime', 0, '1,2,3,4', 'fa fa-hourglass-end', '1'),
+(8, 'Tasks', 'tasks', 0, '1,2,3,4', 'fa fa-tasks', '1'),
+(9, 'Internal Check', 'internalcheck', 0, '1,2,3,4', 'fa fa-exclamation-triangle', '1'),
+(10, 'QA Findings', 'qafindings', 0, '1,2,3,4', 'fa fa-search', '1'),
+(11, 'QA Tracker', 'qatracker', 0, '1,2,3,4', 'fa fa-star', '1'),
+(12, 'Kudos', 'kudos', 0, '1,2,3,4', 'fa fa-thumbs-o-up', '1'),
+(13, 'Metrics', 'metrics', 0, '1,2,3,4', 'fa fa-bar-chart', '1'),
+(14, 'Production Team Stats', 'productionteamstats', 0, '1,2,3,4', 'fa fa-line-chart', '1'),
+(15, 'Intro Archived', 'introarchived', 0, '1,2,3,4', 'fa fa-picture-o', '1'),
+(16, 'PDQA', 'pdqa', 0, '1,2,3,4', 'fa fa-cloud-upload', '1'),
+(17, 'Chat', 'chat', 0, '1,2,3,4', 'fa fa-comments-o', '1'),
+(18, 'Add Client', 'dashboard/addclient', 1, '1,2,3,4', 'fa fa-caret-right', '1'),
+(19, 'Unassigned Task', 'dashboard/unassignedtask', 1, '1,2,3,4', 'fa fa-caret-right', '1'),
+(20, 'Pending Task', 'dashboard/pendingtask', 1, '1,2,3,4', 'fa fa-caret-right', '1'),
+(21, 'Client List', 'dashboard/clientlist', 1, '1,2,3,4', 'fa fa-caret-right', '1'),
+(22, 'Task List', 'dashboard/tasklist', 1, '1,2,3,4', 'fa fa-caret-right', '1'),
+(23, 'Add Client', 'clients/addclient', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(24, 'Special Conditions', 'clients/specialconditions', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(25, 'Accounts for Dev', 'clients/accountfordev', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(26, 'Accounts for E-commerce', 'clients/accountsforecommerce', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(27, 'SP Accounts', 'clients/spaccounts', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(28, 'Today''s Layouts', 'clients/todayslayout', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(29, 'No Layouts', 'clients/no paypal', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(30, 'ReLayouts', 'clients/relayouts', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(31, 'Queue', 'clients/queue', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(32, 'Mobile Versions', 'clients/mobileversions', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(33, 'Priority Accounts', 'clients/priorityaccounts', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(34, 'Special Project', 'clients/specialproject', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(35, 'PSM Demo Accounts', 'clients/psmdemoacct', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(36, 'PSM Demo for Today', 'clients/psmdemotoday', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(37, 'For Download', 'clients/fordownload', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(38, 'For Follow Up', 'clients/forfollowup', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(39, 'Flagged Accounts', 'clients/flaggedacct', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(40, 'Resellers', 'clients/resellers', 2, '1,2,3,4', 'fa fa-caret-right', '1'),
+(41, 'SOLD-No Chosen Layout', 'clients/nochosenlayout', 2, '1,2,3,4', 'fa fa-caret-right', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orc_users`
+--
+
+CREATE TABLE `orc_users` (
+  `user_id` int(11) NOT NULL,
+  `user_fname` varchar(40) NOT NULL,
+  `user_lname` varchar(40) NOT NULL,
+  `user_email` varchar(52) NOT NULL,
+  `user_contact` varchar(13) NOT NULL,
+  `user_password` text NOT NULL,
+  `user_type` varchar(40) NOT NULL,
+  `user_photo` text NOT NULL,
+  `user_teamid` varchar(1) NOT NULL DEFAULT '0',
+  `user_level` varchar(1) NOT NULL,
+  `User_lifespan` varchar(5) NOT NULL,
+  `user_date_created` datetime NOT NULL,
+  `user_date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_status` varchar(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orc_users`
+--
+
+INSERT INTO `orc_users` (`user_id`, `user_fname`, `user_lname`, `user_email`, `user_contact`, `user_password`, `user_type`, `user_photo`, `user_teamid`, `user_level`, `User_lifespan`, `user_date_created`, `user_date_updated`, `user_status`) VALUES
+(1, 'Gerardo', 'Hernani', 'ghernani@proweaver.net', '', '48750284df861abc8c66e582e7b50b35e32a44dd', '2', '', '4', '', '', '2017-05-23 08:58:16', '2017-05-23 09:40:25', '1'),
+(2, 'Kent Carlo', 'Melkiyod', 'kcmelkiyod@proweaver.net', '09770136288', '48750284df861abc8c66e582e7b50b35e32a44dd', '2', '', '4', '', '', '2017-05-23 09:00:24', '2017-05-23 09:48:15', '0'),
+(3, 'tyty', 'tyty', 'example1@example.com', '54545', '356a192b7913b04c54574d18c28d46e6395428ab', '2', '', '3', '', '', '2017-05-23 09:00:46', '2017-05-23 09:47:51', '0'),
+(4, 'ytyt', 'yty', 'example1@example.comrr', 'tyty', 'da4b9237bacccdf19c0760cab7aec4a8359010b0', '3', '', '0', '', '', '2017-05-23 09:01:08', '2017-05-23 09:54:08', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orc_userstest`
+--
+
+CREATE TABLE `orc_userstest` (
+  `user_id` int(11) NOT NULL,
+  `user_firstname` varchar(52) NOT NULL,
+  `user_lastname` varchar(52) NOT NULL,
+  `user_email` varchar(52) NOT NULL,
+  `user_password` varchar(24) NOT NULL,
+  `user_level` varchar(1) NOT NULL,
+  `user_lifespan` int(5) NOT NULL,
+  `user_status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orc_userstest`
+--
+
+INSERT INTO `orc_userstest` (`user_id`, `user_firstname`, `user_lastname`, `user_email`, `user_password`, `user_level`, `user_lifespan`, `user_status`) VALUES
+(1, 'Gerardo', 'Hernani', 'qa@proweaver.net', 'proweaver', '3', 0, 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `orc_tabs`
+--
+ALTER TABLE `orc_tabs`
+  ADD PRIMARY KEY (`tab_id`);
+
+--
+-- Indexes for table `orc_users`
+--
+ALTER TABLE `orc_users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `orc_userstest`
+--
+ALTER TABLE `orc_userstest`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `orc_tabs`
+--
+ALTER TABLE `orc_tabs`
+  MODIFY `tab_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+--
+-- AUTO_INCREMENT for table `orc_users`
+--
+ALTER TABLE `orc_users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `orc_userstest`
+--
+ALTER TABLE `orc_userstest`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
