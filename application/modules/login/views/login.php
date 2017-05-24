@@ -6,8 +6,10 @@
   <title>Orchestra | 2.0</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"> 
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/libs/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">    
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">  
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/custom-bootstrap.css">
 </head>
 
 <body class="hold-transition login-page">
@@ -15,13 +17,13 @@
     <div class="login-logo">
       <a href="../../index2.html"><b>Orchestra</b> 2.0</a>
     </div>
-    <?php echo $msg; ?>
+    <?php echo @$msg; ?>
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your session</p>
       <form action="" method="post">
         <div class="form-group has-feedback"> 
-          <input type="email" name="user_email" class="form-control" placeholder="Email">
+          <input type="email" name="user_email" class="form-control" placeholder="Email" value="<?= @$email; ?>">
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">

@@ -3,16 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class login_model extends CI_Model{
 	
-	private $_table = 'orc_usersTEST';
+	private $_table = 'orc_users';
 
 	function __construct(){
 		parent:: __construct();
 	}
 
 	public function user_login($data){		
-		$data['user_status'] = 1; //add user_status to the array ($data)
-		$this->db->where($data);
+		$data['user_status']   = 1; //add user_status to the array ($data)
+		$data['user_password'] = sha1($data['user_password']);
+		
+		$this->db->select('user_id, user_fname, user_lname, user_level, user_lifespan');
+		$this->db->where($data); 
 		$login = $this->db->get($this->_table)->row();
+		
 		return $login;
 	}
 
